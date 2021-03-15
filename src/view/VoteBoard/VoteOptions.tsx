@@ -12,7 +12,7 @@ type Props = {
   currentValue?: string;
 };
 
-const Column = ({ value }: { value: string }) => {
+const Column = ({ value, index }: { value: string; index: number }) => {
   const title = value
     ?.toLocaleLowerCase()
     .charAt(0)
@@ -20,8 +20,8 @@ const Column = ({ value }: { value: string }) => {
     .concat(value.slice(1));
 
   return (
-    <RadioButton value={value} datatestid={`vote-radio-button-${value}`}>
-      {title}
+    <RadioButton value={value}>
+      <div data-testid={`vote-radio-button-${index}`}>{title}</div>
     </RadioButton>
   );
 };
@@ -41,7 +41,7 @@ const VoteOptions = ({ onChange, options, currentValue }: Props) => {
         // dynamically ensures there are COL_NUM to each row
         .reduce(
           (acc, { value }, index) => {
-            acc[acc.length - 1].push(<Column value={value} />);
+            acc[acc.length - 1].push(<Column value={value} index={index} />);
             if ((index + 1) % COL_NUM === 0) {
               acc.push([]);
             }
@@ -54,11 +54,13 @@ const VoteOptions = ({ onChange, options, currentValue }: Props) => {
 
   return (
     <RadioGroup
-      datatestid="vote-radio-group"
+      data-testid="vote-radio-group"
       onChange={handleChange}
       value={currentValue}
     >
-      <Spacer direction="vertical">{votingOptions}</Spacer>
+      <Spacer data-testid="voteboard-options" direction="vertical">
+        {votingOptions}
+      </Spacer>
     </RadioGroup>
   );
 };

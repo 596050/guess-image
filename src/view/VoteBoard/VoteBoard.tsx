@@ -20,7 +20,7 @@ const VoteBoard = () => {
       <h1 className="voteboard-title">Guess the image and beat the AI!</h1>
       <div className="voteboard-container">
         <Card
-          datatestid="voteboard-card"
+          data-testid="voteboard-card"
           cover={
             <img
               className="voteboard-image"
@@ -33,7 +33,7 @@ const VoteBoard = () => {
           <Spacer size="middle" wrap className="voteboard-voting-panel">
             {loading ? (
               <div className="voteboard-loading-container">
-                <Spin />
+                <Spin data-testid="voteboard-spin" />
               </div>
             ) : (
               <>
@@ -48,7 +48,7 @@ const VoteBoard = () => {
             <Button
               disabled={isDisabled}
               onClick={() => handleVote(answer)}
-              datatestid="voteboard-submit"
+              data-testid="voteboard-submit"
               block
             >
               Submit Vote
