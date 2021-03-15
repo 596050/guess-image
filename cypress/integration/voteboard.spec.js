@@ -13,6 +13,7 @@ describe("VoteBoard", () => {
       },
     }).should("be.visible");
 
+    // should submit form on click of options and submit, displaying loading spin component
     cy.getDomNode({
       atrributeName: "data-testid",
       atrributeValue: "vote-radio-button-0",
